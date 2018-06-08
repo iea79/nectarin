@@ -1,20 +1,21 @@
 /* Global variables */
 /* ======================================================================== */
 $main_font_family:								"Open Sans";
-$main_color:									#000;
+$main_color:									rgba(#000, .6);
 $main_line_height:								1.2;
-$main_font_size:								16px;
+$main_font_size:								1em;
 
-$container_width:								900px;
+$container_width:								90.8em;
 
 $footer_height: 								auto;
 
 // Color collection for elements
-$color_primary:									#7b8287;
-$color_success:									#36a566;
-$color_info:									#03a9f4;
-$color_warning:									#fca33e;
-$color_danger:									#ff1a1a;
+$color_primary:									#65dde7;
+$color_success:									#08d765;
+$color_info:									#02cc86;
+$color_warning:									#feca51;
+$color_danger:									#ef1600;
+$color_dark:									#424141;
 $color_withe:									#ffffff;
 
 $green:											$color_success;

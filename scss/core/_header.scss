@@ -1,12 +1,107 @@
 /* Header
  ----------------------------------------------------------------------------- */
 .header {
-	background-color: #ccc;
-	padding: 10px 0;
+	padding: 2.2em 0;
 	@extend %clear_a;
 	&__logo {
 		float: left;
-		width: 150px;
+		width: 14em;
+		margin-right: 4.6em;
+	}
+	&__left {
+		float: left;
+	}
+	&__right {
+		float: right;
+		margin-left: 1.3em;
+	}
+	&__link {
+		color: #80cfff;
+		font-size: 1.2em;
+		display: inline-block;
+		margin-top: 0.3em;
+		border-bottom: 0.125em dotted #65c7ff;
+		padding-bottom: 0.2em;
+		text-decoration: none;
+		&:hover {
+			border-bottom-color: transparent;
+		}
+	}
+	&__center {
+		overflow: hidden;
+		text-align: justify;
+		// padding: 0 3em;
+		// @extend %clear_a;
+		&:after {
+		    width: 100%;
+		    height: 0px;
+		    visibility: hidden;
+		    overflow: hidden;
+		    content: '';
+		    display: inline-block;
+		}
+	}
+	&__item {
+		display: inline-block;
+		vertical-align: top;
+		text-align: left;
+		width: 32%;
+		&Name {
+			color: #414040;
+			margin: 0.2em 0 1.5em;
+			font-size: 0.875em;
+		}
+		&Botom {
+
+		}
+	}
+	&__adress {
+		display: inline-block;
+		font-size: 0.9em;
+		margin-top: -0.8em;
+		span {		
+			color: #80cfff;
+			border-bottom: 0.125em dotted #65c7ff;
+			transition: all .3s;
+		}
+		text-decoration: none;
+		&:hover {
+			span {
+				border-bottom-color: transparent;
+			}
+		}
+		&:before {
+			content: '';
+			width: 4em;
+			height: 4em;
+			margin-right: 0.8em;
+			background: url('../img/header-marker.png') no-repeat center center;
+			background-size: contain;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	&__time {
+		font-size: 1.3em;
+		line-height: 1;
+		small {
+			text-transform: uppercase;
+			font-size: 0.5em;
+			display: block;
+			margin-bottom: -1.1em;
+		}
+	}
+	&__soc {
+		text-decoration: none;
+		transition: all .3s;
+		top: 0;
+		position: relative;
+		margin-right: 0.7em;
+		width: 2.4em;
+		display: inline-block;
+		&:hover {
+			top: -2px;
+		}
 	}
 }
 

@@ -58,13 +58,13 @@ $(document).ready(function() {
 	});
 
 	// Scroll to ID // Плавный скролл к элементу при нажатии на ссылку. В ссылке указываем ID элемента
-	// $('#main__menu a[href^="#"]').click( function(){ 
-	// 	var scroll_el = $(this).attr('href'); 
-	// 	if ($(scroll_el).length != 0) {
-	// 	$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
-	// 	}
-	// 	return false;
-	// });
+	$('[data-scroll-to]').click( function(){ 
+		var scroll_el = $(this).attr('href'); 
+		if ($(scroll_el).length != 0) {
+		$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
+		}
+		return false;
+	});
 
 	// Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
     // $(document).ready(function(){
@@ -82,7 +82,8 @@ $(document).ready(function() {
     // Inputmask.js
     // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
 
-   	gridMatch();
+   	// gridMatch();
+    fontResize();
 });
 
 $(window).resize(function(event) {
@@ -95,7 +96,8 @@ $(window).resize(function(event) {
 });
 
 function checkOnResize() {
-   	gridMatch();
+   	// gridMatch();
+    fontResize();
 }
 
 function gridMatch() {
@@ -106,8 +108,8 @@ function gridMatch() {
 
 function fontResize() {
     var windowWidth = $(window).width();
-    if (windowWidth < 1440 && windowWidth >= 768) {
-    	var fontSize = windowWidth/19.05;
+    if (windowWidth < 1500 && windowWidth >= 768) {
+    	var fontSize = windowWidth/14.99;
     } else if (windowWidth < 768) {
     	var fontSize = 50;
     // } else if (windowWidth >= 1770) {
@@ -138,8 +140,6 @@ $(function () {
             var iframe = $('<iframe/>', {
                 'frameborder': '0',
                 'src': iframe_url,
-                'width': $(this).width(),
-                'height': $(this).innerHeight()
             })
 
             // Заменяем миниатюру HTML5 плеером с YouTube

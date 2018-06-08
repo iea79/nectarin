@@ -1,5 +1,8 @@
 .form {
 	@extend %clear_a;
+	&__legend {
+
+	}
 	&__row {
 		margin-bottom: 15px;
 		@extend %clear_a;
@@ -22,10 +25,23 @@
 			min-height: 15px;
 		}
 	}
+	&__input {
+
+	}
 	&__label {
 		
 	}
+	&__action {
+
+		.btn {
+
+		}
+	}
+	&__privacy {
+
+	}
 }
+
 // Input text and textarea ================================================
 input:not([type]),
 input[type=text],
