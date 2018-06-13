@@ -3,10 +3,14 @@
 .header {
 	padding: 2.2em 0;
 	@extend %clear_a;
+	font-weight: 400;
 	&__logo {
 		float: left;
 		width: 14em;
 		margin-right: 4.6em;
+		img {
+			width: 100%;
+		}
 	}
 	&__left {
 		float: left;
@@ -14,15 +18,18 @@
 	&__right {
 		float: right;
 		margin-left: 1.3em;
+		text-align: right;
 	}
 	&__link {
 		color: #80cfff;
 		font-size: 1.2em;
 		display: inline-block;
 		margin-top: 0.3em;
-		border-bottom: 0.125em dotted #65c7ff;
+		border-bottom: 0.13em dotted #65c7ff;
 		padding-bottom: 0.2em;
 		text-decoration: none;
+		font-weight: 500;
+		letter-spacing: .1em;
 		&:hover {
 			border-bottom-color: transparent;
 		}
@@ -59,12 +66,15 @@
 		display: inline-block;
 		font-size: 0.9em;
 		margin-top: -0.8em;
+		text-decoration: none;
 		span {		
+			padding-bottom: 0.2em;
+			display: inline-block;
 			color: #80cfff;
 			border-bottom: 0.125em dotted #65c7ff;
 			transition: all .3s;
+			font-weight: 500;
 		}
-		text-decoration: none;
 		&:hover {
 			span {
 				border-bottom-color: transparent;

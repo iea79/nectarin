@@ -25,11 +25,25 @@
 			min-height: 15px;
 		}
 	}
+	&__row {
+		margin-bottom: 1.8em;
+	}
 	&__input {
-
+		box-shadow: -0.6em -0.5em 2.875em rgba(0, 0, 0, 0.05);
+		border-radius: 2.375em;
+		background-color: $color_withe;
+		padding: 0.2em;
 	}
 	&__label {
-		
+		font-family: Gilroy;
+		color: $color_dark;
+		font-size: 1.5em;
+		font-weight: 400;
+		line-height: 1.4;
+		margin-bottom: 1.6em;
+		b {
+			font-weight: 900;
+		}
 	}
 	&__action {
 
@@ -38,7 +52,19 @@
 		}
 	}
 	&__privacy {
-
+		text-align: center;
+		margin-bottom: 0;
+		label {
+			font-family: Gilroy;
+			font-size: 0.813em;
+			font-weight: 400;			
+		}
+		input[type=checkbox] {
+			margin-right: .2em;
+		}
+		a {
+			color: #80cfff;
+		}
 	}
 }
 
@@ -54,14 +80,16 @@ input[type=number],
 input[type=datetime], 
 textarea {
 	background-color: $input_bg_color;
-	border: 1px solid $input_border_color;
-	padding: 6px 15px;
+	border: 0.063em solid rgba(#7e7c7c, .3);
+	padding: 1.8em 2em;
 	outline: none;
-	font-size: 16px;
-	font-weight: 300;
+	font-size: 1em;
+	font-weight: 400;
 	font-family: $main_font_family;
-	border-radius: 5px;
+	border-radius: 2.5em;
 	transition: all .3s;
+	text-align: center;
+	color: rgba(#888686, .5);
 	&:hover {
 		border: 1px solid $input_hover_border_color;
 		background-color: $input_hover_bg_color;;
@@ -76,7 +104,7 @@ textarea {
 	}
 	// Placeholder for input +++++++++++++++
 	@include placeholder {
-		color: $input_placeholder_color;
+		color: rgba(#888686, .5);
 	}
 }
 
@@ -95,15 +123,16 @@ input[type=checkbox],
 input[type=radio] {
 	padding: 0;
     display: inline-block;
-    height: 14px;
-    width: 14px;
-    border: 1px solid #aaa;
+	width: 1.55em;
+	height: 1.55em;
+	border-radius: 0.39em;
     overflow: hidden;
     margin-top: -4px;
     vertical-align: middle;
     -webkit-appearance: none;
     outline: 0;
     background: 0 0;
+	background-color: #00b7f4;
     text-align: center;
     position: relative;
 	&:not(:disabled),
@@ -144,11 +173,12 @@ input[type=checkbox] {
 	&:checked:before,
 	&:indeterminate:before {
 	    content: "\2714";
-	    font-size: 12px;
+	    font-size: 1.3em;
 	    -webkit-font-smoothing: antialiased;
 	    text-align: center;
-	    line-height: 13px;
-	    color: #000;
+	    line-height: 1.3;
+	    color: #fff;
+		background-color: #00b7f4;
 	}
 
 	&:indeterminate:before {

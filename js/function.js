@@ -80,7 +80,7 @@ $(document).ready(function() {
     // });
 
     // Inputmask.js
-    // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
+    $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
 
     $('.packageSlider').slick({
         centerMode: true,
@@ -103,9 +103,22 @@ $(document).ready(function() {
                 }
             }
         ]
-    })
+    });
 
-    $('.atelierSlider').slick();
+    $('.faqs__toggle').on('click', function() {
+        var item = $(this).closest('.faqs__item');
+
+        if (item.hasClass('open')) {
+            item.removeClass('open');
+        } else {
+            $('.faqs__item').removeClass('open');
+            item.addClass('open');
+        }
+    });
+
+
+
+    $('.atelierSlider, .staffSlider, .jobsSlider, .reviewVideo, .reviewMobile').slick();
 
    	// gridMatch();
     fontResize();
@@ -133,8 +146,8 @@ function gridMatch() {
 
 function fontResize() {
     var windowWidth = $(window).width();
-    if (windowWidth < 1500 && windowWidth >= 768) {
-    	var fontSize = windowWidth/14.99;
+    if (windowWidth >= 768) {
+    	var fontSize = windowWidth/16.8;
     } else if (windowWidth < 768) {
     	var fontSize = 50;
     // } else if (windowWidth >= 1770) {
@@ -344,4 +357,47 @@ function formSubmit() {
 //     });
 // }
 
+$(document).ready(function() {
+    $('.mapBox__slider').slick({
+        fade: true,
+        speed: 500
+    });
+    ymaps.ready(init);
+});
 
+
+function init() {
+
+    var result = document.getElementById('result'),
+        myMap = new ymaps.Map('map', {
+            center: [55.753559, 37.609218], // Москва
+            zoom: 15
+        });
+
+    function clickGoto(city) {
+
+        var myGeocoder = ymaps.geocode(city);
+        myGeocoder.then(
+            function(res) {
+                coords = res.geoObjects.get(0).geometry.getCoordinates();
+
+                myMap.panTo(coords, {
+                    flying: 1
+                });
+                var placeMark = new ymaps.Placemark(coords, {
+                    balloonContent: city
+                });
+                myMap.geoObjects.add(placeMark);
+            },
+                function(err) {
+                alert('Ошибка');
+            }
+        );
+        return false;
+    }
+
+    $('.mapBox__slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+        clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
+    });
+
+}
