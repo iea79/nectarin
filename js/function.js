@@ -44,8 +44,8 @@ $(document).ready(function() {
 
 	// First screen full height
 	function setHeiHeight() {
-	    $('.full__height').css({
-	        minHeight: $(window).height() + 'px'
+	    $('.js-full__height').css({
+	        minHeight: $(window).height() - $('footer').height()
 	    });
 	}
 	setHeiHeight(); // устанавливаем высоту окна при первой загрузке страницы
