@@ -66,19 +66,6 @@ $(document).ready(function() {
 		return false;
 	});
 
-	// Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
-    // $(document).ready(function(){
-    //     var HeaderTop = $('#header').offset().top;
-        
-    //     $(window).scroll(function(){
-    //             if( $(window).scrollTop() > HeaderTop ) {
-    //                     $('#header').addClass('stiky');
-    //             } else {
-    //                     $('#header').removeClass('stiky');
-    //             }
-    //     });
-    // });
-
     // Inputmask.js
     $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
 

@@ -1431,6 +1431,8 @@ input[type=checkbox]:disabled:checked:before, input[type=checkbox]:disabled:inde
           background-color: #fff; }
           .firstScreen__actionLeft:after {
             display: none; }
+        .firstScreen__actionRight {
+          text-align: center; }
         .firstScreen__action .btn {
           position: relative; } }
 
