@@ -5,6 +5,9 @@
     height: auto !important;
     height: 100%;
     margin: 0 auto (-$footer_height) auto; // отрицательный нижний отступ на высоту футера
+    @media (max-width: 767px) {
+        overflow: hidden;
+    }
 }
 
 /* Middle

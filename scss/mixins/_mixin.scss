@@ -137,7 +137,6 @@
 	}
 	@include browser("not-flex") {	
 		display: block;
-		font-size: 0;
 		line-height: 0;
 		letter-spacing: -1px;
 		&>div {

@@ -113,6 +113,22 @@
 			top: -2px;
 		}
 	}
+	@media (max-width: 767px) {
+		padding-top: 17px;
+		&__left {
+			width: 127px;
+		}
+		&__center {
+			display: none;
+		}
+	    &__logo {
+	    	width: 100%;
+	    	margin-right: 15px;
+	    }
+	    &__link {
+			font-weight: 600;
+	    }
+	}
 }
 
 // stiky menu
