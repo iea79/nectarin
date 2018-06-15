@@ -1975,11 +1975,12 @@
 		}
 	}
 	&__form {
-		padding: 7em 0 0;
+		padding: 7em 0 0 2em;
+		overflow: hidden;
 		.grid {
 			// margin-left: 3em;
 			> div {
-				padding-left: 0em;
+				// padding-left: 0em;
 			}
 		}
 	}
@@ -1988,7 +1989,8 @@
 	    margin-bottom: 60px;
 	    &__wrap {
 	    	background-image: none;
-	    	padding: 20px;
+	    	padding: 20px 0;
+	    	text-align: center;
 	  //   	box-shadow: 0 1.313em 7.313em rgba(212, 216, 219, 0.6);
 			// background-color: $color_withe;
 	    }
@@ -1997,9 +1999,10 @@
 	    }
 		&__form {
 			padding: 0 0 0;
+			overflow: inherit;
 			.grid {
 				// margin-left: 3em;
-				padding-left: 20px;
+				// padding-left: 20px;
 				> div {
 					width: 100%;
 				}

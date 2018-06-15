@@ -2627,24 +2627,23 @@ input[type=checkbox]:disabled:checked:before, input[type=checkbox]:disabled:inde
     .callbackBox__img img {
       width: 100%; }
   .callbackBox__form {
-    padding: 7em 0 0; }
-    .callbackBox__form .grid > div {
-      padding-left: 0em; }
+    padding: 7em 0 0 2em;
+    overflow: hidden; }
   @media (max-width: 767px) {
     .callbackBox {
       margin-top: 0;
       margin-bottom: 60px; }
       .callbackBox__wrap {
         background-image: none;
-        padding: 20px; }
+        padding: 20px 0;
+        text-align: center; }
       .callbackBox__img {
         display: none; }
       .callbackBox__form {
-        padding: 0 0 0; }
-        .callbackBox__form .grid {
-          padding-left: 20px; }
-          .callbackBox__form .grid > div {
-            width: 100%; } }
+        padding: 0 0 0;
+        overflow: inherit; }
+        .callbackBox__form .grid > div {
+          width: 100%; } }
 
 .faqs {
   margin-bottom: 7.5em; }
