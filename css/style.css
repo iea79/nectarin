@@ -890,13 +890,11 @@ input[type=checkbox]:disabled:checked:before, input[type=checkbox]:disabled:inde
   html[data-browser*="flexible"] .grid {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -webkit-flex-flow: row wrap;
     -ms-flex-flow: row wrap;
     flex-flow: row wrap; }
   html[data-browser*="flexible"] .grid-nowrap {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap; }
   .grid > div {
@@ -2037,7 +2035,6 @@ input[type=checkbox]:disabled:checked:before, input[type=checkbox]:disabled:inde
     max-width: 21em; }
   .warrantyGrid {
     -webkit-box-pack: center;
-    -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
     margin-left: -4em; }
@@ -3411,5 +3408,3 @@ input[type=checkbox]:disabled:checked:before, input[type=checkbox]:disabled:inde
 
 .footer_success .footer__centerRight {
   padding-top: 0; }
-
-/*# sourceMappingURL=style.css.map */

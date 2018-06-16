@@ -193,7 +193,7 @@ $(function () {
 
         $('.video__play, .video__prev').on('click', function () {
             // создаем iframe со включенной опцией autoplay
-            var videoId = $(this).closest('.youtube').attr('id');
+            var videoId = $(this).closest('.js-youtube').attr('id');
             var iframe_url = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&autohide=1";
             if ($(this).data('params')) iframe_url += '&' + $(this).data('params');
 
