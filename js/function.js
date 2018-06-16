@@ -44,8 +44,8 @@ $(document).ready(function() {
 
 	// First screen full height
 	function setHeiHeight() {
-	    $('.full__height').css({
-	        minHeight: $(window).height() + 'px'
+	    $('.js-full__height').css({
+	        minHeight: $(window).height() - $('footer').height()
 	    });
 	}
 	setHeiHeight(); // устанавливаем высоту окна при первой загрузке страницы
@@ -66,21 +66,8 @@ $(document).ready(function() {
 		return false;
 	});
 
-	// Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
-    // $(document).ready(function(){
-    //     var HeaderTop = $('#header').offset().top;
-        
-    //     $(window).scroll(function(){
-    //             if( $(window).scrollTop() > HeaderTop ) {
-    //                     $('#header').addClass('stiky');
-    //             } else {
-    //                     $('#header').removeClass('stiky');
-    //             }
-    //     });
-    // });
-
     // Inputmask.js
-    // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
+    $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
 
     $('.packageSlider').slick({
         centerMode: true,
@@ -90,25 +77,32 @@ $(document).ready(function() {
                 breakpoint: 768,
                 settings: {
                     arrows: false,
-                    centerMode: true,
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
+                    centerMode: false,
                     slidesToShow: 1
                 }
             }
         ]
-    })
+    });
 
-    $('.atelierSlider').slick();
+    $('.faqs__toggle').on('click', function() {
+        var item = $(this).closest('.faqs__item');
+
+        if (item.hasClass('open')) {
+            item.removeClass('open');
+        } else {
+            $('.faqs__item').removeClass('open');
+            item.addClass('open');
+        }
+    });
+
+
+
+    $('.atelierSlider, .staffSlider, .jobsSlider, .reviewVideo, .reviewMobile').slick();
 
    	// gridMatch();
     fontResize();
+    choiceBox();
+
 });
 
 $(window).resize(function(event) {
@@ -133,14 +127,56 @@ function gridMatch() {
 
 function fontResize() {
     var windowWidth = $(window).width();
-    if (windowWidth < 1500 && windowWidth >= 768) {
-    	var fontSize = windowWidth/14.99;
+    if (windowWidth >= 768) {
+    	var fontSize = windowWidth/16.8;
     } else if (windowWidth < 768) {
-    	var fontSize = 50;
-    // } else if (windowWidth >= 1770) {
-    // 	var fontSize = 100;
+    	var fontSize = 70;
     }
 	$('body').css('fontSize', fontSize + '%');
+}
+
+function choiceBox() {
+
+    // Переключение пола и лица/тела
+    var inputs = $('.choice__swich input');
+    var body = $('[name=body]');
+    var gender = $('[name=gender]');
+
+    inputs.on('change', function() {
+        $('.choice__content').removeClass('active');
+        if (body.prop('checked') == false) {
+            if (gender.prop('checked') == false) {
+                $('#woman_body').addClass('active');
+                
+            } else {
+                $('#man_body').addClass('active');
+            }
+        } else {
+            if (gender.prop('checked') == false) {
+                $('#woman_head').addClass('active');
+            } else {
+                $('#man_head').addClass('active');
+            }
+        }
+    });
+
+    // Показываем/скрываем оверлеи при наведении
+    $('[data-overlay]').on('mouseenter', function() {
+        var id = $(this).data('overlay');
+        var content = $(this).closest('.choice__content');
+        $('#'+id).show();
+        if ($(this).hasClass('body_back')) {
+            content.find('.choice__body').removeClass('active');
+            content.find('.choice__body_back').addClass('active');
+        } else {
+            content.find('.choice__body').addClass('active');
+            content.find('.choice__body_back').removeClass('active');
+        }
+    });
+    $('[data-overlay]').on('mouseleave', function() {
+        var id = $(this).data('overlay');
+        $('#'+id).hide();
+    });
 }
 
 // Видео youtube для страницы
@@ -237,111 +273,53 @@ function formSubmit() {
     });
 }
 
-// Деление чисел на разряды Например из строки 10000 получаем 10 000
-// Использование: thousandSeparator(1000) или используем переменную.
-// function thousandSeparator(str) {
-//     var parts = (str + '').split('.'),
-//         main = parts[0],
-//         len = main.length,
-//         output = '',
-//         i = len - 1;
-    
-//     while(i >= 0) {
-//         output = main.charAt(i) + output;
-//         if ((len - i) % 3 === 0 && i > 0) {
-//             output = ' ' + output;
-//         }
-//         --i;
-//     }
+// Карта + слайдер с точками.
+ymaps.ready(init);
 
-//     if (parts.length > 1) {
-//         output += '.' + parts[1];
-//     }
-//     return output;
-// };
+function init() {
+
+    var result = document.getElementById('result'),
+        myMap = new ymaps.Map('map', {
+            center: [55.753559, 37.609218],
+            zoom: 15
+        });
 
 
-// Хак для яндекс карт втавленных через iframe
-// Страуктура:
-//<div class="map__wrap" id="map-wrap">
-//  <iframe style="pointer-events: none;" src="https://yandex.ru/map-widget/v1/-/CBqXzGXSOB" width="1083" height="707" frameborder="0" allowfullscreen="true"></iframe>
-//</div>
-// Обязательное свойство в style которое и переключет скрипт
-// document.addEventListener('click', function(e) {
-//     var map = document.querySelector('#map-wrap iframe')
-//     if(e.target.id === 'map-wrap') {
-//         map.style.pointerEvents = 'all'
-//     } else {
-//         map.style.pointerEvents = 'none'
-//     }
-// })
 
-// Простая проверка форм на заполненность и отправка аяксом
-// function formSubmit() {
-//     $("[type=submit]").on('click', function (e){ 
-//         e.preventDefault();
-//         var form = $(this).closest('.form');
-//         var url = form.attr('action');
-//         var form_data = form.serialize();
-//         var field = form.find('[required]');
-//         // console.log(form_data);
+    function clickGoto(city) {
 
-//         empty = 0;
+        var myGeocoder = ymaps.geocode(city);
+        myGeocoder.then(
+            function(res) {
+                coords = res.geoObjects.get(0).geometry.getCoordinates();
 
-//         field.each(function() {
-//             if ($(this).val() == "") {
-//                 $(this).addClass('invalid');
-//                 // return false;
-//                 empty++;
-//             } else {
-//                 $(this).removeClass('invalid');
-//                 $(this).addClass('valid');
-//             }  
-//         });
+                myMap.panTo(coords, {
+                    flying: 1
+                });
+                var placeMark = new ymaps.Placemark(coords, {
+                    balloonContent: city
+                });
+                myMap.geoObjects.add(placeMark);
+            },
+                function(err) {
+                // alert('Ошибка');
+            }
+        );
+        return false;
+    }
 
-//         // console.log(empty);
+    $('.mapBox__slider').on('init', function(event, slick, currentSlide, nextSlide){
+        clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
+        console.log($(slick.$slides.get(currentSlide)).attr('title'))
+    });
 
-//         if (empty > 0) {
-//             return false;
-//         } else {        
-//             $.ajax({
-//                 url: url,
-//                 type: "POST",
-//                 dataType: "html",
-//                 data: form_data,
-//                 success: function (response) {
-//                     // $('#success').modal('show');
-//                     // console.log('success');
-//                     console.log(response);
-//                     // console.log(data);
-//                     // document.location.href = "success.html";
-//                 },
-//                 error: function (response) {
-//                     // $('#success').modal('show');
-//                     // console.log('error');
-//                     console.log(response);
-//                 }
-//             });
-//         }
+    $('.mapBox__slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+        clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
+    });
 
-//     });
+    $('.mapBox__slider').slick({
+        fade: true,
+        speed: 500
+    });
 
-//     $('[required]').on('blur', function() {
-//         if ($(this).val() != '') {
-//             $(this).removeClass('invalid');
-//         }
-//     });
-
-//     $('.form__privacy input').on('change', function(event) {
-//         event.preventDefault();
-//         var btn = $(this).closest('.form').find('.btn');
-//         if ($(this).prop('checked')) {
-//             btn.removeAttr('disabled');
-//             // console.log('checked');
-//         } else {
-//             btn.attr('disabled', true);
-//         }
-//     });
-// }
-
-
+}
