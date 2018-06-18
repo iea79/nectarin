@@ -1,5 +1,5 @@
 <?php
-    $to = 'busforward@gmail.com'; //Почта получателя, через запятую можно указать сколько угодно адресов
+    $to = $_POST['mail_recipient'];
     $subject = $_POST['subject'];
 
     $message = '
@@ -8,10 +8,8 @@
                         <title>' . $subject . '</title>
                     </head>
                     <body>
-                        <p>Ф И О: ' . $_POST['name'] . '</p>                        
+                        <p>Пакет(если указан): ' . $_POST['package_name'] . '</p>                        
                         <p>Телефон: ' . $_POST['tel'] . '</p>                        
-                        <p>E-mail: ' . $_POST['email'] . '</p>                        
-                        <p>Сообщение: ' . $_POST['quest'] . '</p>                        
                     </body>
                 </html>'; 
     $headers = "Content-type: text/html; charset=utf-8 \r\n"; //Кодировка письма
