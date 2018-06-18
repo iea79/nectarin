@@ -57,6 +57,22 @@
 	background-size: 100%;
 }
 
+.marker {
+	display: inline-block;
+	width: 0.938em;
+	height: 1.375em;
+	background: url('../img/marker.png') no-repeat center center;
+	background-size: 100%;
+}
+
+.metro {
+	display: inline-block;
+	width: 1.375em;
+	height: 0.938em;
+	background: url('../img/metro.png') no-repeat center center;
+	background-size: 100%;
+}
+
 .wrapper {
 	&_success {
 		background: url('../img/success-bg.jpg') no-repeat center center;
@@ -3026,5 +3042,54 @@
 .footer_success {
 	.footer__centerRight {
 		padding-top: 0;
+	}
+}
+
+.atelierOrder {
+	&__grid {
+		margin-left: -1.5em;
+		> div {
+			padding-left: 1.5em;
+			margin-bottom: 1.5em;
+		}
+	}
+	&__item {
+		background-color: #f6f6f6;
+		padding: 0.5em 1.4em;
+		font-family: Gilroy;
+		font-weight: 700;
+		font-size: 1.1em;
+	}
+	&__address {
+		margin-bottom: 0.6em;
+		position: relative;
+		padding-left: 1.8em;
+		.marker {
+			position: absolute;
+			left: 0;
+			top: 0;
+			font-size: 0.9em;
+		}
+	}
+	&__metro {
+		padding-left: 1.8em;
+		position: relative;
+		.metro {
+			position: absolute;
+			left: 0;
+			top: 0;
+			font-size: 1em;
+		}
+	}
+	.marker {
+		// margin-right: 0.5em;
+	}
+	.metro {}
+	@media (max-width: 767px) {
+	    &__grid {
+	    	> div {
+	    		width: 100%;
+	    	}
+	    }
 	}
 }

@@ -103,6 +103,11 @@ $(document).ready(function() {
     fontResize();
     choiceBox();
 
+    $('[data-target="#packageModal"]').on('click', function() {
+        $('.form__packageName').html($('.packageSlider__item.slick-current .packageSlider__name').text());
+        $('[name=package_name]').val($('.packageSlider__item.slick-current .packageSlider__name').text());
+    });
+
 });
 
 $(window).resize(function(event) {
