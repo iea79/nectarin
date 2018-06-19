@@ -217,22 +217,18 @@ function formSubmit() {
         var url = form.attr('action');
         var form_data = form.serialize();
         var field = form.find('[required]');
-        // console.log(form_data);
 
         empty = 0;
 
         field.each(function() {
             if ($(this).val() == "") {
                 $(this).addClass('invalid');
-                // return false;
                 empty++;
             } else {
                 $(this).removeClass('invalid');
                 $(this).addClass('valid');
             }  
         });
-
-        // console.log(empty);
 
         if (empty > 0) {
             return false;
@@ -243,15 +239,11 @@ function formSubmit() {
                 dataType: "html",
                 data: form_data,
                 success: function (response) {
-                    // $('#success').modal('show');
-                    // console.log('success');
-                    // console.log(response);
-                    // console.log(data);
-                    document.location.href = "success.html";
+                    setTimeout(function() {
+                        document.location.href = "success.html";
+                    }, 300);
                 },
                 error: function (response) {
-                    // $('#success').modal('show');
-                    // console.log('error');
                     // console.log(response);
                 }
             });
@@ -264,7 +256,6 @@ function formSubmit() {
         var btn = $(this).closest('.form').find('.btn');
         if ($(this).prop('checked')) {
             btn.removeAttr('disabled');
-            // console.log('checked');
         } else {
             btn.attr('disabled', true);
         }
@@ -309,7 +300,6 @@ if ($('div').is('#map')) {
 
         $('.mapBox__slider').on('init', function(event, slick, currentSlide, nextSlide){
             clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
-            console.log($(slick.$slides.get(currentSlide)).attr('title'))
         });
 
         $('.mapBox__slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
