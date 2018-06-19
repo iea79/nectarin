@@ -15,8 +15,8 @@
     $headers = "Content-type: text/html; charset=utf-8 \r\n"; //Кодировка письма
     $headers .= "From: Отправитель " . $to . "\r\n"; //Наименование и почта отправителя
     if (mail($to, $subject, $message, $headers)) {
-        echo 'success';
+        echo ''.$to, $subject, $message, $headers.'';
     } else {
         echo 'error';
-    }
+    };
 ?>
