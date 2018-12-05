@@ -57,14 +57,6 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
-	// Scroll to ID // Плавный скролл к элементу при нажатии на ссылку. В ссылке указываем ID элемента
-	$('[data-scroll-to]').click( function(){ 
-		var scroll_el = $(this).attr('href'); 
-		if ($(scroll_el).length != 0) {
-		$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
-		}
-		return false;
-	});
 
     // Inputmask.js
     $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
@@ -102,6 +94,12 @@ $(document).ready(function() {
    	// gridMatch();
     fontResize();
     choiceBox();
+    formSubmit();
+
+    $('[data-target="#packageModal"]').on('click', function() {
+        $('.form__packageName').html($('.packageSlider__item.slick-current .packageSlider__name').text());
+        $('[name=package_name]').val($('.packageSlider__item.slick-current .packageSlider__name').text());
+    });
 
 });
 
@@ -219,22 +217,18 @@ function formSubmit() {
         var url = form.attr('action');
         var form_data = form.serialize();
         var field = form.find('[required]');
-        // console.log(form_data);
 
         empty = 0;
 
         field.each(function() {
             if ($(this).val() == "") {
                 $(this).addClass('invalid');
-                // return false;
                 empty++;
             } else {
                 $(this).removeClass('invalid');
                 $(this).addClass('valid');
             }  
         });
-
-        // console.log(empty);
 
         if (empty > 0) {
             return false;
@@ -245,15 +239,11 @@ function formSubmit() {
                 dataType: "html",
                 data: form_data,
                 success: function (response) {
-                    // $('#success').modal('show');
-                    // console.log('success');
-                    // console.log(response);
-                    // console.log(data);
-                    document.location.href = "success.html";
+                    setTimeout(function() {
+                        document.location.href = "success.html";
+                    }, 300);
                 },
                 error: function (response) {
-                    // $('#success').modal('show');
-                    // console.log('error');
                     // console.log(response);
                 }
             });
@@ -266,7 +256,6 @@ function formSubmit() {
         var btn = $(this).closest('.form').find('.btn');
         if ($(this).prop('checked')) {
             btn.removeAttr('disabled');
-            // console.log('checked');
         } else {
             btn.attr('disabled', true);
         }
@@ -274,52 +263,53 @@ function formSubmit() {
 }
 
 // Карта + слайдер с точками.
-ymaps.ready(init);
+if ($('div').is('#map')) {
+    ymaps.ready(init);
 
-function init() {
+    function init() {
 
-    var result = document.getElementById('result'),
-        myMap = new ymaps.Map('map', {
-            center: [55.753559, 37.609218],
-            zoom: 15
+        var result = document.getElementById('result'),
+            myMap = new ymaps.Map('map', {
+                center: [55.753559, 37.609218],
+                zoom: 15
+            });
+
+
+
+        function clickGoto(city) {
+
+            var myGeocoder = ymaps.geocode(city);
+            myGeocoder.then(
+                function(res) {
+                    coords = res.geoObjects.get(0).geometry.getCoordinates();
+
+                    myMap.panTo(coords, {
+                        flying: 1
+                    });
+                    var placeMark = new ymaps.Placemark(coords, {
+                        balloonContent: city
+                    });
+                    myMap.geoObjects.add(placeMark);
+                },
+                    function(err) {
+                    // alert('Ошибка');
+                }
+            );
+            return false;
+        }
+
+        $('.mapBox__slider').on('init', function(event, slick, currentSlide, nextSlide){
+            clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
         });
 
+        $('.mapBox__slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+            clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
+        });
 
+        $('.mapBox__slider').slick({
+            fade: true,
+            speed: 500
+        });
 
-    function clickGoto(city) {
-
-        var myGeocoder = ymaps.geocode(city);
-        myGeocoder.then(
-            function(res) {
-                coords = res.geoObjects.get(0).geometry.getCoordinates();
-
-                myMap.panTo(coords, {
-                    flying: 1
-                });
-                var placeMark = new ymaps.Placemark(coords, {
-                    balloonContent: city
-                });
-                myMap.geoObjects.add(placeMark);
-            },
-                function(err) {
-                // alert('Ошибка');
-            }
-        );
-        return false;
     }
-
-    $('.mapBox__slider').on('init', function(event, slick, currentSlide, nextSlide){
-        clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
-        console.log($(slick.$slides.get(currentSlide)).attr('title'))
-    });
-
-    $('.mapBox__slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
-        clickGoto($(slick.$slides.get(currentSlide)).attr('title'))
-    });
-
-    $('.mapBox__slider').slick({
-        fade: true,
-        speed: 500
-    });
-
 }

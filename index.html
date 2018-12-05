@@ -38,7 +38,7 @@
 						<div class="header__item">
 							<div class="header__itemName">5 уютных студий в Москве:</div>
 							<div class="header__itemBotom">
-								<a href="#" class="header__adress"><span>посмотреть адреса</span></a>
+								<a href="#" class="header__adress" data-toggle="modal" data-target="#atelierOrder"><span>посмотреть адреса</span></a>
 							</div>
 						</div>
 						<div class="header__item">
@@ -104,7 +104,7 @@
 							на первый прием
 						</div>
 						<div class="firstScreen__actionRight">
-							<a href="#" data-scroll-to class="btn btn_warning"><i class="cursor"></i> Записаться на прием</a>
+							<a href="#" class="btn btn_warning" data-toggle="modal" data-target="#makeAppointment"><i class="cursor"></i> Записаться на прием</a>
 						</div>
 					</div>
 				</div>
@@ -541,7 +541,7 @@
 						Обладатели клубной карты получают дополнительную скидку 5% к любому пакету
 					</div>
 					<div class="package__actionRight">
-						<a href="#" class="btn btn_warning"><i class="cursor"></i> Записаться на прием</a>
+						<a href="#" class="btn btn_warning" data-toggle="modal" data-target="#packageModal"><i class="cursor"></i> Записаться на прием</a>
 					</div>
 				</div>
 			</div>
@@ -642,7 +642,7 @@
 									<div class="atelierSlider__data">c 09:00—22:00</div>
 								</div>
 							</div>
-							<a href="#">Записаться на на прием</a>
+							<a href="#" data-toggle="modal" data-target="#makeAppointment">Записаться на на прием</a>
 						</div>
 					</div>
 					<div class="atelierSlider__item">
@@ -658,7 +658,7 @@
 									<div class="atelierSlider__data">c 09:00—22:00</div>
 								</div>
 							</div>
-							<a href="#">Записаться на на прием</a>
+							<a href="#" data-toggle="modal" data-target="#makeAppointment">Записаться на на прием</a>
 						</div>
 					</div>
 					<div class="atelierSlider__item">
@@ -674,7 +674,7 @@
 									<div class="atelierSlider__data">c 09:00—22:00</div>
 								</div>
 							</div>
-							<a href="#">Записаться на на прием</a>
+							<a href="#" data-toggle="modal" data-target="#makeAppointment">Записаться на на прием</a>
 						</div>
 					</div>
 				</div>
@@ -875,7 +875,7 @@
 				<div class="savingPlate">
 					<div class="savingPlate__text"><b class="txt_warning">Получите скидку 50%</b> на первую процедуру, без ограничения количества зон эпиляции</div>
 					<div class="savingPlate__action">
-						<a href="#" class="btn btn_warning"><i class="cursor"></i> Записаться на прием</a>
+						<a href="#" class="btn btn_warning" data-toggle="modal" data-target="#makeAppointment"><i class="cursor"></i> Записаться на прием</a>
 					</div>
 				</div>
 				
@@ -1176,15 +1176,17 @@
 					</div>
 					<!-- Start form_callback -->
 					<form class="form callbackBox__form" id="callback" action="send.php">
+						<input type="hidden" name="subject" value="Перезвоните мне">
+						<input type="hidden" name="mail_recipient" value="busforward@gmail.com">
 						<h2 class="form__label"><b>Если у вас есть вопросы, то оставьте заявку в форме ниже,</b> и наш менеджер перезвонит вам уже через 10 минут в рабочее время (с 10:00 до 22:00)</h2>
 						<div class="grid grid__2">
 							<div class="form__row">
 								<div class="form__input">
-									<input type="text" name="tel" placeholder="+_(___)___ __ __"/>
+									<input type="text" name="tel" required placeholder="+_(___)___ __ __"/>
 								</div>
 							</div>
 							<div class="form__row form__action">
-								<button class="btn btn_danger" type="submitt">Перезвоните мне</button>
+								<button class="btn btn_danger" type="submit">Перезвоните мне</button>
 							</div>
 						</div>
 						<div class="form__row form__privacy">
@@ -1274,6 +1276,8 @@
 					</div>
 					<div class="question__right">
 						<form class="form" id="questionForm" action="send.php">
+							<input type="hidden" name="subject" value="Получить консультацию">
+							<input type="hidden" name="mail_recipient" value="busforward@gmail.com">
 							<legend class="form__label">
 								<span class="question__labelPreImg"><b>Оставьте заявку,</b> <br>менеджер перезвонит, ответит на вопросы и запишет на прием в удобное время </span>
 								<span class="question__labelImg">
@@ -1284,11 +1288,11 @@
 								<div class="grid grid__2 question__grid">
 									<div>
 										<div class="form__input">
-											<input type="text" name="tel" placeholder="+_(___)___-__-__"/>
+											<input type="text" name="tel" required placeholder="+_(___)___-__-__"/>
 										</div>
 									</div>
 									<div>
-										<button class="btn btn_danger" type="submitt">Получить консультацию <br>и скидку 50%</button>
+										<button class="btn btn_danger" type="submit">Получить консультацию <br>и скидку 50%</button>
 									</div>
 								</div>
 							</div>
@@ -1455,6 +1459,168 @@
 	</div>
 </div>
 <!-- end Modal privacyModal -->
+
+<!-- Button trigger modal  -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#makeAppointment">
+        Посмотреть демо
+      </button> -->
+
+<!-- begin Modal makeAppointment -->
+<div class="modal fade makeAppointment" id="makeAppointment">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<a href="#" class="modal-close" data-dismiss="modal"></a>
+			<div class="modal__wrap">
+				<div class="modal__left">
+					<img src="img/appointment-phone.png">
+				</div>
+				<div class="modal__form">
+					<form class="form" action="send.php">
+						<input type="hidden" name="subject" value="Записаться на прием">
+						<input type="hidden" name="mail_recipient" value="busforward@gmail.com">
+						<legend class="form__legend">Введите свой номер телефона <br>и наш менеджер свяжется с вами </legend>
+						<div class="form__sub">для записи со скидкой 50%</div>
+
+						<div class="form__row">
+							<input class="form__input" type="tel" name="tel" required placeholder="+_(___)___-__-__"/>
+						</div>
+						<div class="form__row form__action">
+							<button class="btn btn_danger" type="submit"><i class="cursor"></i> Записаться на прием</button>
+						</div>
+						<div class="form__row form__privacy">
+							<input type="checkbox" checked />
+							<label>Принимаю <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#privacyModal">условия обработки информации</a></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end Modal makeAppointment -->
+
+<!-- Button trigger modal  -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#packageModal">
+        Посмотреть демо
+      </button> -->
+
+<!-- begin Modal packageModal -->
+<div class="modal fade packageModal" id="packageModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<a href="#" class="modal-close" data-dismiss="modal"></a>
+			<div class="modal__wrap">
+				<div class="modal__left">
+					<img src="img/appointment-phone.png">
+				</div>
+				<div class="modal__form">
+					<form class="form" action="send.php">
+						<input type="hidden" name="subject" value="Записаться на прием">
+						<input type="hidden" name="mail_recipient" value="busforward@gmail.com">
+						<input type="hidden" name="package_name">
+						<legend class="form__legend">Введите свой номер телефона <br>и наш менеджер свяжется с вами </legend>
+						<div class="form__sub">для записи со скидкой 50%</div>
+						<div class="form__packageName">Пакет «Тело»</div>
+
+						<div class="form__row">
+							<input class="form__input" type="tel" name="tel" required placeholder="+_(___)___-__-__"/>
+						</div>
+						<div class="form__row form__action">
+							<button class="btn btn_danger" type="submit"><i class="cursor"></i> Записаться на прием</button>
+						</div>
+						<div class="form__row form__privacy">
+							<input type="checkbox" checked />
+							<label>Принимаю <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#privacyModal">условия обработки информации</a></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end Modal packageModal -->
+
+<!-- Button trigger modal atelierOrder -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#atelierOrder">
+        Посмотреть демо
+      </button> -->
+
+<!-- begin Modal atelierOrder -->
+<div class="modal fade atelierOrder" id="atelierOrder">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<a href="#" class="modal-close" data-dismiss="modal"></a>
+			<div class="modal-title" id="myModalLabel">Название модали</div>
+			<!-- begin grid atelierOrder__grid -->
+			<div class="grid grid__2 atelierOrder__grid">
+				<div>
+					<div class="atelierOrder__item">
+						<div class="atelierOrder__address">
+							<i class="marker"></i> Москва, ул. Мясницкая, д. 34, оф. 450
+						</div>
+						<div class="atelierOrder__metro">
+							<i class="metro"></i> Чистые Пруды
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="atelierOrder__item">
+						<div class="atelierOrder__address">
+							<i class="marker"></i> Москва, ул. Мясницкая, д. 34, оф. 450
+						</div>
+						<div class="atelierOrder__metro">
+							<i class="metro"></i> Чистые Пруды
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="atelierOrder__item">
+						<div class="atelierOrder__address">
+							<i class="marker"></i> Москва, ул. Мясницкая, д. 34, оф. 450
+						</div>
+						<div class="atelierOrder__metro">
+							<i class="metro"></i> Чистые Пруды
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="atelierOrder__item">
+						<div class="atelierOrder__address">
+							<i class="marker"></i> Москва, ул. Мясницкая, д. 34, оф. 450
+						</div>
+						<div class="atelierOrder__metro">
+							<i class="metro"></i> Чистые Пруды
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="atelierOrder__item">
+						<div class="atelierOrder__address">
+							<i class="marker"></i> Москва, ул. Мясницкая, д. 34, оф. 450
+						</div>
+						<div class="atelierOrder__metro">
+							<i class="metro"></i> Чистые Пруды
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="atelierOrder__item">
+						<div class="atelierOrder__address">
+							<i class="marker"></i> Москва, ул. Мясницкая, д. 34, оф. 450
+						</div>
+						<div class="atelierOrder__metro">
+							<i class="metro"></i> Чистые Пруды
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end grid atelierOrder__grid -->
+		</div>
+	</div>
+</div>
+<!-- end Modal atelierOrder -->
+
+
 
 
 	<script type="text/javascript" src="js/jquery.js"></script>
